@@ -1,0 +1,167 @@
+{% extends 'basic.html' %}
+{% block title %}Plantify {% endblock %}
+{% block css %}
+	html {
+		box-sizing: border-box;
+	}
+
+	*,
+	*:before,
+	*:after {
+		box-sizing: inherit;
+	}
+
+	body {
+		color: #999;
+		background-color: #eee;
+		font-family: sans-serif;
+		font-size: 100%;
+	}
+
+form {
+	width: 80%;
+	height: 100%;
+	margin: 1rem auto;
+}
+
+input[type=text] {
+	background-color: transparent;
+	width: 100%;
+	font-size: 80%;
+	text-align: center;
+	/*text-transform: uppercase;*/
+
+	padding: 1rem 2rem;
+	border: 0;
+}
+.center{
+	 margin: 0;
+	  position: absolute;
+	  top: 50%;
+	  left: 50%;
+	  -ms-transform: translate(-50%, -50%);
+	  transform: translate(-50%, -50%);
+}
+label.file {
+	position: relative;
+	display: block;
+	top: 50%;
+	left:25%;
+	width: 50%;
+	font-size: 80%;
+	text-align: center;
+	text-transform: uppercase;
+	border: 2px dashed #ccc;
+	margin: 3rem 0;
+	padding: 3rem;
+}
+
+label.file:hover {
+	background-color: rgba(255, 255, 255, 0.3);
+}
+
+label.file:active,
+label.file.focus {
+	border-color: #09f;
+}
+
+input[type=file] {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	outline: 0;
+	border: 1px solid red;
+}
+
+button {
+	color: #eee;
+	background-color: #666;
+	padding: 1rem 2rem;
+	border: 0;
+	outline: none;
+}
+
+button:hover,
+button:focus {
+	background-color: #333;
+}
+
+button:active {
+	color: #fff;
+	background-color: #000;
+}
+.loc{
+margin-top:-2.5%;	
+margin-left: 43%;
+}
+.sml {
+	display: inline-block;
+	color: #eee;
+	background-color: rgba(0, 200, 0, 0.67);
+	border-radius: 1rem;
+	font-size: smaller;
+	margin: 1rem 0 0 0;
+	padding: 0.67rem 1rem;
+}
+{% endblock %}
+{% block body %}
+<!--<img src="static/photo/logoh.png" width="108" height="32">-->
+<!--<video autoplay="" width="100%" controls="" loop="" >-->
+<!--	<source src="\static\video\intro.mp4" type="video/mp4">-->
+<!--</video>-->
+<div class="container p-5">
+<div>
+	<h4 style="text-align:center; color:#000000">"Green Wisdom: Nurturing Nature's Pharmacy"</h4>
+</div>
+	<form method="post" action="/plant" enctype="multipart/form-data">{% csrf_token %}
+		
+		
+		<label class="file" id="lb">
+			<label id="file_name">Drop an image of Plant or click to select one</label>
+				<input required class="file-upload" name="photo" id="photo" type="file" accept=".png,.jpg,.jpeg" multiple>
+				
+		</label>
+		
+		<button class='loc' type="submit">Identify</button> 
+	</form>
+
+{% endblock %}
+
+{% block js %}
+<script>
+	$('input[type=file]').change(function() {
+				//console.log(this.files);
+				var element=document.getElementById('file_name')
+				// var lb=document.getElementById('lb')
+				var f = this.files;
+				var el = $(this).parent();
+				if (f.length > 1 ) {
+						console.log(this.files, 1);
+						el.text('Sorry, multiple files are not allowed');
+						return;
+				}
+				// if(!(f[0].type in ('image/jpg','image/jpeg','image/png'))){
+				// 	el.text('please Enter valid image');
+				// 	return;
+				// }
+				// // el.removeClass('focus');
+				// lb.innerHTML=' '
+				element.innerHTML=f[0].name + '<br>' +
+						'<span class="sml">' +
+						'type: ' + f[0].type + ', ' +
+						Math.round(f[0].size / 1024) + ' KB</span>';
+				console.log(f[0].type);
+		});
+
+		$('input[type=file]').on('focus', function() {
+				$(this).parent().addClass('focus');
+		});
+
+		$('input[type=file]').on('blur', function() {
+				$(this).parent().removeClass('focus');
+		});
+</script>
+{% endblock %}

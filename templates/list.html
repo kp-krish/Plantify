@@ -1,0 +1,63 @@
+{% extends 'basic.html' %}
+{% block title %}Plantify {% endblock %}
+{% block css %}
+@media (max-width: 767.98px) { .border-sm-start-none { border-left: none !important; } }
+html {
+	box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+	box-sizing: inherit;
+}
+
+body {
+	color: #999;
+	background-color: #eee;
+	font-family: sans-serif;
+	font-size: 100%;
+}
+{% endblock %}
+{% block body %}
+{% for i in my_list %}
+<section style="background-color: #eee;">
+    <div class="container py-5">
+      <div class="row justify-content-center mb-3">
+        <div class="col-md-12 col-xl-10">
+          <div class="card shadow-0 border rounded-3">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
+                  <div class="bg-image hover-zoom ripple rounded ripple-surface">
+                    <img src=""
+                      class="w-100" />
+                    <a href="#">
+                      <div class="hover-overlay">
+                        <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+                <div class="col-md-6 col-lg-6 col-xl-6">
+                  <h5>Quant trident shirts</h5>
+                  
+                  <div class="mt-1 mb-0 text-muted small">
+                    <span>100% cotton</span>
+                    
+                  </div>
+                  <p>
+                    There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> 
+    </div>
+  </section>
+  {% endfor %}
+{% endblock %}
+{% block js %}
+{% endblock %}

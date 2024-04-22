@@ -1,0 +1,39 @@
+{% extends 'basic.html' %}
+
+{% block title %}Plant {% endblock %}
+
+
+{% block body %}
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h3>{{common_name}}</h3>
+      <h4>Scientific name:{{scientific_name}}</h4>
+      <h4>Discovered in: {{year}}</h4>
+      <h4>Locations:</h4>
+
+        {{AIresponse1}}
+<br><br>
+      <h4>
+        Medical Advantages:
+      </h4>
+
+        {{AIresponse2}}
+
+      <h4></h4>
+    </div>
+    <div class="col mt-5">
+      <img src="{{image_url}}" width="500px" height="400px">
+<!--        <p style="align-text:center">-->
+<!--            <a href="https://nurserylive.com/pages/buy-plants-online-in-ahmedabad">Click here to buy the plants</a>-->
+<!--        </p>-->
+    </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+
+{% block js %} {% endblock %}
+
